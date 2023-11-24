@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ManzanaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/home', [ManzanaController::class, 'index'])->name('home');
+    Route::get('/verManzana/{manzana}', [ManzanaController::class, 'show'])->name('verManzana');
+    Route::get('/formularioAgregarManzana', [ManzanaController::class, 'create'])->name('agregarManzana');
+    Route::post('/agregarManzana', [ManzanaController::class, 'store']);
+    Route::get('/modificarManzana', [ManzanaController::class, 'edit'])->name('editarManzana');
+    Route::post('/editarManzana/{manzana}', [ManzanaController::class, 'update'])->name('editarManzana');
+    Route::delete('/eliminarManzana/{id}', [ManzanaController::class, 'destroy'])->name('eliminarManzana');
 });
 
 require __DIR__.'/auth.php';
